@@ -1,0 +1,71 @@
+{% extends './account_base.html' %} {% load static %}
+{% block title %}Register{% endblock %}
+
+{% block contents %}
+<div class="registration_container">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="w3-card w3-animate-zoom registration_content">
+          <div class="w3-animate-zoom header">
+            <p class="site-name m-0">STOCK MANAGER registration</p>
+          </div>
+
+          <div class="register_form_content">
+            <form action="{% url 'accounts:register' %}" method="POST">
+              {% csrf_token %}
+              {% if form.errors %}
+                {{ form.errors }}
+              {% endif %}
+                <div class="form-row">
+                  <div class="col-6">
+                    <div class="register_form_div">
+                      {{ form.username }}
+                      <label for="">Username</label>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="register_form_div">
+                      {{ form.email}}
+                      <label for="">Email address</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="col-md-6">
+                    <div class="register_form_div">
+                      {{ form.first_name}}
+                      <label for="">Firstname</label>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="register_form_div">
+                      {{ form.last_name}}
+                      <label for="">Lastname</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="register_form_div">
+                  {{ form.password1 }}
+                  <label for="">Password</label>
+                </div>
+                <div class="register_form_div">
+                  {{ form.password2 }}
+                  <label for="">Confirm password</label>
+                </div>
+                <button type="submit" class="btn">Register<i class="fa fa-sign-out"></i></button>
+            </form>
+          </div>
+          <div class="create_account">
+            Already have an account?
+            <a href="{% url 'accounts:login' %}">sign in</a>
+          </div>
+        </div>
+        <div class="login_footer">
+          <p>© ihi STOCK MANAGER {% now "Y"  %}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

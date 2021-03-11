@@ -1,0 +1,73 @@
+{% extends './base.html' %}
+{% block title %}Manage Items{% endblock%}
+{% block contents %}
+<div class="outer_container">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6"></div>
+      <div class="col-md-6">
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }} alert-dismissible w3-animate-right fade show d-flex justify-content-between" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="my-card p-3">
+          <div class="table-responsive">
+            <table id="mytable" class="table table-bordered p-0 m-0">
+              <thead>
+                <tr>
+                  <th>S/No</th>
+                  <th>item name</th>
+                  <th>quantity</th>
+                  <th>date requested</th>
+                  <th>Requested by</th>
+                  <th>request status</th>
+                  <th>date approved</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for request_made in requests_made %}
+                <tr>
+                  <td>{{ forloop.counter }}</td>
+                  <td>{{ request_made.item_name }}</td>
+                  <td>{{ request_made.quantity }}</td>
+                  <td>{{ request_made.requested_date }}</td>
+                  <td>{{ request_made.requested_by.first_name|title }} {{ request_made.requested_by.last_name|title }}</td>
+                  <td>{% if request_made.request_status %}<p class="alert alert-success p-0 text-center">Approved</p>{% else %}<p class="alert alert-warning p-0 text-center">Pending</p>{% endif %}</td>
+                  <td>{% if request_made.approved_date %}{{ request_made.approved_date }}{% else %}-{% endif %}</td>
+                  <td>
+                    {% if not request_made.request_status %}
+                    <a href="{{ request_made.get_approve_url }}" class="btn btn-warning">Approve</a>
+                    {% endif %}
+                  </td>
+                </tr>
+                {% empty %}
+                <tr>
+                  <td class="table-empty" colspan="6">You have not made any request yet</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block blockjs %}
+  <script type="text/javascript">
+    $(document).ready( function () {
+          $('#mytable').DataTable();
+      } );
+  </script>
+{% endblock %}

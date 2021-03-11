@@ -1,0 +1,51 @@
+{% extends './base.html' %}
+{% load static %}
+{% block title %}Manage Items{% endblock%}
+{% block contents %}
+<div class="outer_container">
+  <div class="container">
+    <div class="row my-card p-3">
+      <div class="col-md-4">
+        <div class="user-avatar">
+          <img src="{% static 'images/profile.png' %}" alt="">
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="table-responsive">
+          <div class="profile-info mb-4">
+            <table class="table table-striped p-0 my-2">
+              <col width="30%">
+              <col width="70%">
+              <tbody>
+                <tr>
+                  <td>Fullname:</td>
+                  <td>{{ user.first_name }} {{ user.last_name }}</td>
+                </tr>
+                <tr>
+                  <td>Username:</td>
+                  <td>{{ user.username }}</td>
+                </tr>
+                <tr>
+                  <td>Email:</td>
+                  <td>{{ user.email }}</td>
+                </tr>
+                <tr>
+                  <td>User role:</td>
+                  <td>{{ user.profile.role_name|upper }}</td>
+                </tr>
+                <tr>
+                  <td>Date joined:</td>
+                  <td>{{ user.date_joined }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="profile-button">
+            <button type="button" class="btn"><a href="{% url 'accounts:password_change' %}">Change password</a></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

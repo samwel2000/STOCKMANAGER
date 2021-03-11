@@ -1,0 +1,45 @@
+{% load static %}
+{% url 'dashboard:manageProducts' as dashboard_product %}
+{% url 'dashboard:stockRequests' as dashboard_request %}
+{% url 'dashboard:requestItem' as dashboard_item %}
+{% url 'dashboard:systemUsers' as dashboard_user %}
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-light">
+  <div class="container pb-2 pt-1">
+    <a class="navbar-brand w3-card brand" href="{% url 'dashboard:home' %}">STOCK MANAGER</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse links" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        {% ifequal request.user.profile.role_name 'manager' %}
+        <li class="nav-item">
+          <a class="nav-link {% ifequal dashboard_product request.path %}active_link{% endifequal %}" href="{% url 'dashboard:manageProducts' %}"><i class="fas fa-shopping-bag"></i>  Manage stocks</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% ifequal dashboard_request request.path %}active_link{% endifequal %}" href="{% url 'dashboard:stockRequests' %}"><i class="fas fa-question-circle"></i>  Stock requests</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% ifequal dashboard_user request.path %}active_link{% endifequal %}" href="{% url 'dashboard:systemUsers' %}"><i class="fas fa-users"></i>  System users</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link {% ifequal dashboard_item request.path %}active_link{% endifequal %}" href="{% url 'dashboard:requestItem' %}"><i class="fas fa-question-circle"></i>  Request item</a>
+        </li>
+        {% endifequal %}
+      </ul>
+      <div class="nav-item dropdown dropdown-links">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+           {{user.first_name|title}} {{user.last_name|title}} <img src="{% static 'images/login.png' %}" alt="User avatar">
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li><a class="dropdown-item" href="{% url 'dashboard:profile' %}"><i class="fas fa-user"></i> Profile</a></li>
+          <hr class="dropdown-divider">
+          <li><a class="dropdown-item" href="{% url 'accounts:password_change' %}"><i class="fas fa-key"></i> Change password</a></li>
+          <hr class="dropdown-divider">
+          <li><a class="dropdown-item" href="{% url 'accounts:logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,252 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+
+:root {
+  --ihiColor: #2ca02c;
+  --ihiColorOpacity: rgba(0,255,0,0.6);
+}
+*,::before,::after{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* ------------------ LOGIN CSS ------------------ */
+.login_container {
+  padding:5rem;
+}
+.login_container .login_content {
+  padding-bottom: 1rem;
+  position: relative;
+  border-radius: 5px;
+}
+.login_container .header {
+  position: absolute;
+  top: -1.45rem;
+  left: 1rem;
+  padding: 0;
+  padding: 0.75rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0,0,0,.15);
+  /* background: var(--ihiColorOpacity); */
+  background: linear-gradient(0deg, var(--ihiColor) 2%, var(--ihiColorOpacity) 90%);
+  border-radius: 5px;
+}
+.login_container .login_image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 3rem;
+}
+.login_container .login_image img {
+  width: 7rem;
+  background: #eee;
+  border-radius: 50%;
+}
+.login_container .form_content {
+  padding: 0 1rem;
+}
+.login_container ul {
+  list-style: none;
+  background: #f2dede;
+  border-color: #ebccd1;
+  color: #a94442;
+  padding: 0.5rem;
+  border-radius: 5px;
+}
+.login_container ul li #text {
+  display: none;
+}
+/*===== FORM =====*/
+.form_content{
+  margin-top: 2rem;
+}
+.form_content .form-div{
+  position: relative;
+  height: 48px;
+  margin-bottom: 1.5rem;
+}
+.form_content input{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #eee;
+  border-radius: .5rem;
+  outline: none;
+  padding: 1rem;
+  background: none;
+  z-index: 1;
+}
+.form_content label{
+  position: absolute;
+  left: 0rem;
+  top: 0.05rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.15rem;
+  /* background-color: #fff; */
+  background: #fafafa;
+  width: 100%;
+  color: #aaa;
+  transition: .3s;
+}
+
+/*Input focus move up label*/
+.form_content input:focus, .form_content input:valid{
+  border: 1.5px solid var(--ihiColor);
+}
+
+.form_content input:focus + label, .form_content input:valid + label{
+  top: -.75rem;
+  left: 1rem;
+  padding: 0 0.15rem;
+  color: var(--ihiColor);
+  font-size: 1rem;
+  background: #fff;
+  font-weight: 500;
+  width: auto;
+  z-index: 10;
+}
+
+.login_container form button {
+  background: linear-gradient(0deg, var(--ihiColor) 2%, var(--ihiColorOpacity) 90%);
+  transition: ease 5s;
+  font-weight: 500;
+}
+.login_container form button:hover {
+  background: linear-gradient(0deg, var(--ihiColorOpacity) 2%, var(--ihiColor) 90%);
+  box-shadow: 0 10px 36px rgba(0,0,0,.15);
+}
+.login_container a {
+  color: blue;
+  font-size: 0.85rem;
+  text-decoration-style: dashed;
+}
+.login_container .create_account {
+  padding: 0 1rem;
+  padding-top: 1rem;
+  margin-bottom: 0.5rem;
+  margin-top: 1.5rem;
+  border-top: 1px solid #eee;
+  text-align: center;
+}
+.login_container .login_footer {
+  margin: 1rem 0;
+  text-align: center;
+  color: #aaa;
+}
+
+/* ------------------ REGISTER CSS ------------------ */
+.registration_container {
+  padding:5rem;
+}
+.registration_container .registration_content {
+  padding-bottom: 1rem;
+  position: relative;
+  border-radius: 5px;
+}
+.registration_container .registration_content .header {
+  position: absolute;
+  top: -1.45rem;
+  left: 1rem;
+  padding: 0;
+  padding: 0.75rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0,0,0,.15);
+  /* background: var(--ihiColorOpacity); */
+  background: linear-gradient(0deg, var(--ihiColor) 2%, var(--ihiColorOpacity) 90%);
+  border-radius: 5px;
+}
+.register_form_content {
+  padding: 3.5rem 1rem 1rem 1rem;
+}
+.register_form_content ul {
+  list-style: none;
+  background: #f2dede;
+  border-color: #ebccd1;
+  color: #a94442;
+  padding: 0.5rem;
+  border-radius: 5px;
+}
+.register_form_content .register_form_div {
+  position: relative;
+  height: 48px;
+  margin-bottom: 1.5rem;
+}
+.register_form_content input{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #eee;
+  border-radius: .5rem;
+  outline: none;
+  padding: 1rem;
+  background: none;
+  z-index: 1;
+}
+.register_form_content label{
+  position: absolute;
+  left: 0rem;
+  top: 0.05rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.15rem;
+  /* background-color: #fff; */
+  background: #fafafa;
+  width: 100%;
+  color: #aaa;
+  transition: .3s;
+}
+
+/*Input focus move up label*/
+.register_form_content input:focus, .register_form_content input:valid{
+  border: 1.5px solid var(--ihiColor);
+}
+.register_form_content input:focus + label, .register_form_content input:valid + label{
+  top: -.75rem;
+  left: 1rem;
+  padding: 0 0.15rem;
+  color: var(--ihiColor);
+  font-size: 1rem;
+  background: #fff;
+  font-weight: 500;
+  width: auto;
+  z-index: 10;
+}
+
+.registration_container form button {
+  background: linear-gradient(0deg, var(--ihiColor) 2%, var(--ihiColorOpacity) 90%);
+  transition: ease 5s;
+  font-size: 1.15rem;
+  padding: 0.5rem 3rem;
+  font-weight: 500;
+}
+.registration_container form button:hover {
+  background: linear-gradient(0deg, var(--ihiColorOpacity) 2%, var(--ihiColor) 90%);
+  box-shadow: 0 10px 36px rgba(0,0,0,.15);
+}
+.registration_container a {
+  color: blue;
+  font-size: 0.85rem;
+  text-decoration-style: dashed;
+}
+.registration_container .create_account {
+  padding: 0 1rem;
+  padding-top: 1rem;
+  margin-bottom: 0.5rem;
+  margin-top: 1.5rem;
+  border-top: 1px solid #eee;
+  text-align: center;
+}
+.registration_container .login_footer {
+  margin: 1rem 0;
+  text-align: center;
+  color: #aaa;
+}
