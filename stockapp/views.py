@@ -62,13 +62,21 @@ def profile(request):
 @login_required
 def systemUsers(request):
     translation.activate(request.user.profile.language)
+    form = ProfileForm()
     if request.method == 'POST':
         form = ProfileForm(request.POST or None)
-        if form.is_valid():
-            form.save()
+        get_user_id = form.data['user']
+        get_role_name = form.data['role_name']
+        get_user = get_object_or_404(User, pk=get_user_id)
+        if not get_user.profile:
+            if form.is_valid():
+                form.save()
+        else:
+            Profile.objects.filter(user=get_user).update(
+                role_name = get_role_name
+            )
             messages.success(request, f'Query OK, Role assigned succesifully')
             return redirect('dashboard:systemUsers')
-    form = ProfileForm()
     template_name = 'stockapp/systemUsers.html'
     get_users = User.objects.all().order_by('first_name')
     context = {

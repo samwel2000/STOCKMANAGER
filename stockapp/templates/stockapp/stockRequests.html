@@ -10,7 +10,7 @@
         {% for message in messages %}
           <div class="alert alert-{{ message.tags }} alert-dismissible w3-animate-right fade show d-flex justify-content-between" role="alert">
             {{ message }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            <button type="button" class="btn" data-bs-dismiss="alert" aria-label="Close"><i class="fas fa-times"></i></button>
           </div>
         {% endfor %}
       </div>
@@ -64,7 +64,7 @@
                 </tr>
                 {% empty %}
                 <tr>
-                  <td class="table-empty" colspan="6">You have not made any request yet</td>
+                  <td class="table-empty" colspan="12">You have not made any request yet</td>
                 </tr>
                 {% endfor %}
               </tbody>
