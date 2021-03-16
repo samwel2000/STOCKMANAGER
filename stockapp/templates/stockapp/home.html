@@ -5,8 +5,21 @@
 {% block contents %}
 <div class="outer_container">
   <div class="container">
+    <div class="row mb-2">
+      <div class="col-md-6"></div>
+      <div class="col-md-6">
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }} alert-dismissible w3-animate-right fade show d-flex justify-content-between" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    {% ifequal request.user.profile.role_name 'manager' %}
     <div class="row mb-5 mt-n2 statistics">
-      {% ifequal request.user.profile.role_name 'manager' %}
       <div class="col-md-3  stat">
         <div class="statistic-box">
           <picture>
@@ -86,25 +99,71 @@
         </div>
       </div>
       {% else %}
-      <div class="col-md-6  stat">
-        <div class="statistic-box">
-          <picture>
-            <img src="{% static 'images/chart1.png' %}" alt="">
-          </picture>
-          <div class="statistic stat">
-            <h1>{% trans 'Total requests made' %}</h1>
-            <p>{% if user_total_requests %}{% if user_total_requests < 10 %}0{{user_total_requests}}{% else %}{{user_total_requests}}{%endif%}{% else %}00{%endif%}</p>
+      <div class="row mb-5 mt-n2 statistics">
+        <div class="col-md-6  stat">
+          <div class="statistic-box">
+            <picture>
+              <img src="{% static 'images/chart1.png' %}" alt="">
+            </picture>
+            <div class="statistic stat">
+              <h1>{% trans 'Total requests made' %}</h1>
+              <p>{% if user_total_requests %}{% if user_total_requests < 10 %}0{{user_total_requests}}{% else %}{{user_total_requests}}{%endif%}{% else %}00{%endif%}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6  stat">
+          <div class="statistic-box">
+            <picture>
+              <img src="{% static 'images/chart2.png' %}" alt="">
+            </picture>
+            <div class="statistic">
+              <h1>{% trans 'Approved requests' %}</h1>
+              <p>{% if user_total_approved_request %}{% if user_total_approved_request < 10 %}0{{user_total_approved_request}}{% else %}{{user_total_approved_request}}{%endif%}{% else %}00{%endif%}</p>
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-md-6  stat">
-        <div class="statistic-box">
-          <picture>
-            <img src="{% static 'images/chart2.png' %}" alt="">
-          </picture>
-          <div class="statistic">
-            <h1>{% trans 'Approved requests' %}</h1>
-            <p>{% if user_total_approved_request %}{% if user_total_approved_request < 10 %}0{{user_total_approved_request}}{% else %}{{user_total_approved_request}}{%endif%}{% else %}00{%endif%}</p>
+      <div class="row mt-2">
+        <div class="col-md-12">
+          <div class="my-card p-3">
+            <div class="table-responsive">
+              <table id="mytable" class="table table-bordered p-0 m-0">
+                <thead>
+                  <tr>
+                    <th>S/No</th>
+                    <th>Item name</th>
+                    <th>Quantity</th>
+                    <th>Returnable</th>
+                    <th>Destination</th>
+                    <th>Project name</th>
+                    <th>Date requested</th>
+                    <th>Request status</th>
+                    <th>Date approved</th>
+                    <th>Date returned</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for request_made in requests_made %}
+                  <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ request_made.item_name }}</td>
+                    <td>{{ request_made.quantity }}</td>
+                    <td>{% if request_made.returnable %}Yes{% else %}No{% endif %}</td>
+                    <td>{{ request_made.destination }}</td>
+                    <td>{{ request_made.project_name|upper }}</td>
+                    <td>{{ request_made.requested_date }}</td>
+                    <td>{% if request_made.request_status %}<p class="alert alert-success p-0 text-center">Approved</p>{% else %}<p class="alert alert-warning p-0 text-center">Pending</p>{% endif %}</td>
+                    <td>{% if request_made.approved_date %}{{ request_made.approved_date }}{% else %}-{% endif %}</td>
+                    <td>{% if request_made.returned_date %}{{ request_made.returned_date }}{% else %}-{% endif %}</td>
+                  </tr>
+                  {% empty %}
+                  <tr>
+                    <td class="table-empty" colspan="6">You have not made any request yet</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>

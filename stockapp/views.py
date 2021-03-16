@@ -35,6 +35,7 @@ def home(request):
                 data['available_quantity'] = item.quantity
                 items_data.append(data)
 
+    get_requests_made = Requests.objects.filter(requested_by = request.user).order_by('-requested_date')
     template_name = 'stockapp/home.html'
     context = {
         'total_items_type':get_total_items_type,
@@ -44,6 +45,7 @@ def home(request):
         'user_total_requests':get_user_total_requests,
         'user_total_approved_request':get_user_total_approved_request,
         'items_data':items_data,
+        'requests_made':get_requests_made,
     }
     return render(request, template_name, context)
 
@@ -124,14 +126,12 @@ def requestItem(request):
             instance.requested_by = request.user
             instance.save()
             messages.success(request, 'Your request was submitted successifully')
-            return redirect('dashboard:requestItem')
+            return redirect('dashboard:home')
 
-    get_requests_made = Requests.objects.filter(requested_by = request.user).order_by('-requested_date')
     form = RequestForm()
     template_name = 'stockapp/request.html'
     context = {
         'form':form,
-        'requests_made':get_requests_made,
     }
     return render(request, template_name, context)
 
