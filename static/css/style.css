@@ -260,3 +260,8 @@ nav {
   opacity: 0.85;
   font-weight: 600;
 }
+@media screen and (max-width:768px) {
+  .request-form {
+    margin-bottom: 2rem;
+  }
+}
