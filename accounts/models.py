@@ -10,12 +10,17 @@ from django.contrib.auth.models import User
 #         return self.role_name
 
 class Profile(models.Model):
-    ROLE_CHOICES = [
+    ROLE_CHOICES = (
         ('manager', 'MANAGER'),
         ('normal user', 'NORMAL USER'),
-    ]
+    )
+    LANGUAGE_CHOICES = (
+        ('en-us', 'English'),
+        ('sw', 'Swahili'),
+    )
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     role_name = models.CharField(max_length=100, choices=ROLE_CHOICES, default='normal user')
+    language = models.CharField(default='en-us', choices=LANGUAGE_CHOICES, max_length=5)
 
     class Meta:
         verbose_name_plural = "Profile"

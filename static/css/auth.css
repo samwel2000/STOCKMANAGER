@@ -15,8 +15,17 @@ body{
 }
 
 /* ------------------ LOGIN CSS ------------------ */
+.auth-logo {
+  display: flex;
+  justify-content: center;
+}
+.auth-logo img {
+  width: 80%;
+  object-fit: contain;
+  height: 4rem;
+}
 .login_container {
-  padding:5rem 0;
+  padding:2rem 0;
 }
 .login_container .login_content {
   padding-bottom: 1rem;
@@ -143,7 +152,7 @@ body{
 
 /* ------------------ REGISTER CSS ------------------ */
 .registration_container {
-  padding:5rem 0;
+  padding:2rem 0;
 }
 .registration_container .registration_content {
   padding-bottom: 1rem;

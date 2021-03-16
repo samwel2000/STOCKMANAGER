@@ -1,6 +1,7 @@
 {% extends './base.html' %}
 {% load static %}
-{% block title %}{% endblock%}
+{% load i18n %}
+{% block title %}Dashboard{% endblock%}
 {% block contents %}
 <div class="outer_container">
   <div class="container">
@@ -12,7 +13,7 @@
             <img src="{% static 'images/chart1.png' %}" alt="">
           </picture>
           <div class="statistic">
-            <h1>Total types of items</h1>
+            <h1>{% trans 'Total types of items' %}</h1>
             <p>{% if total_items_type %}{% if total_items_type < 10 %}0{{total_items_type}}{% else %}{{total_items_typetotal_system_users}}{%endif%}{% else %}00{%endif%}</p>
           </div>
         </div>
@@ -23,7 +24,7 @@
             <img src="{% static 'images/chart2.png' %}" alt="">
           </picture>
           <div class="statistic stat">
-            <h1>Total requests</h1>
+            <h1>{% trans 'Total requests' %}</h1>
             <p>{% if total_requests %}{% if total_requests < 10 %}0{{total_requests}}{% else %}{{total_requests}}{%endif%}{% else %}00{%endif%}</p>
           </div>
         </div>
@@ -34,7 +35,7 @@
             <img src="{% static 'images/chart3.png' %}" alt="">
           </picture>
           <div class="statistic">
-            <h1>Approved request</h1>
+            <h1>{% trans 'Approved request' %}</h1>
             <p>{% if total_approved_request %}{% if total_approved_request < 10 %}0{{total_approved_request}}{% else %}{{total_approved_request}}{%endif%}{% else %}00{%endif%}</p>
           </div>
         </div>
@@ -45,7 +46,7 @@
             <img src="{% static 'images/chart4.png' %}" alt="">
           </picture>
           <div class="statistic">
-            <h1>System users total</h1>
+            <h1>{% trans 'System users total' %}</h1>
             <p>{% if total_system_users %}{% if total_system_users < 10 %}0{{total_system_users}}{% else %}{{total_system_users}}{%endif%}{% else %}00{%endif%}</p>
           </div>
         </div>
@@ -59,10 +60,10 @@
               <thead>
                 <tr>
                   <th>S/No</th>
-                  <th>Item name</th>
-                  <th>Total quantity</th>
-                  <th>Used quantity</th>
-                  <th>Available quantity</th>
+                  <th>{% trans 'Item name' %}</th>
+                  <th>{% trans 'Total quantity' %}</th>
+                  <th>{% trans 'Used quantity' %}</th>
+                  <th>{% trans 'Available quantity' %}</th>
                 </tr>
               </thead>
               <tbody>
@@ -76,7 +77,7 @@
                 </tr>
                 {% empty %}
                 <tr>
-                  <td colspan="5" class="table-empty">No items added yet</td>
+                  <td colspan="5" class="table-empty">{% trans 'No items added yet' %}</td>
                 </tr>
                 {% endfor %}
               </tbody>
@@ -91,7 +92,7 @@
             <img src="{% static 'images/chart1.png' %}" alt="">
           </picture>
           <div class="statistic stat">
-            <h1>Total requests made</h1>
+            <h1>{% trans 'Total requests made' %}</h1>
             <p>{% if user_total_requests %}{% if user_total_requests < 10 %}0{{user_total_requests}}{% else %}{{user_total_requests}}{%endif%}{% else %}00{%endif%}</p>
           </div>
         </div>
@@ -102,7 +103,7 @@
             <img src="{% static 'images/chart2.png' %}" alt="">
           </picture>
           <div class="statistic">
-            <h1>Approved requests</h1>
+            <h1>{% trans 'Approved requests' %}</h1>
             <p>{% if user_total_approved_request %}{% if user_total_approved_request < 10 %}0{{user_total_approved_request}}{% else %}{{user_total_approved_request}}{%endif%}{% else %}00{%endif%}</p>
           </div>
         </div>
