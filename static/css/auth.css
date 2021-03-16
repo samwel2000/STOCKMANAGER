@@ -2,8 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
 
 :root {
-  --ihiColor: #2ca02c;
-  --ihiColorOpacity: rgba(0,255,0,0.6);
+  --ihiColor: #00E676;
+  --ihiColorOpacity: #69F0AE;
 }
 *,::before,::after{
   margin: 0;
@@ -18,6 +18,14 @@ body{
 .auth-logo {
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.auth-logo h1 {
+  font-size: 1.45rem;
+  text-align: center;
+  font-weight: 600;
+  opacity: 0.65;
 }
 .auth-logo img {
   width: 80%;
@@ -41,8 +49,8 @@ body{
   font-size: 1.15rem;
   font-weight: 600;
   box-shadow: 0 1px 3px rgba(0,0,0,.15);
-  /* background: var(--ihiColorOpacity); */
-  background: linear-gradient(0deg, var(--ihiColor) 2%, var(--ihiColorOpacity) 90%);
+  background: var(--ihiColorOpacity);
+  /* background: linear-gradient(0deg, var(--ihiColor) 2%, var(--ihiColorOpacity) 90%); */
   border-radius: 5px;
 }
 .login_container .login_image {
@@ -123,12 +131,15 @@ body{
 }
 
 .login_container form button {
-  background: linear-gradient(0deg, var(--ihiColor) 2%, var(--ihiColorOpacity) 90%);
-  transition: ease 5s;
+  background: var(--ihiColorOpacity);
+  /* background: linear-gradient(0deg, var(--ihiColor) 2%, var(--ihiColorOpacity) 90%); */
+  transition: ease 0.3s;
   font-weight: 500;
+  padding: 0.25rem 1.5rem;
 }
 .login_container form button:hover {
-  background: linear-gradient(0deg, var(--ihiColorOpacity) 2%, var(--ihiColor) 90%);
+  background: var(--ihiColor);
+  /* background: linear-gradient(0deg, var(--ihiColorOpacity) 2%, var(--ihiColor) 90%); */
   box-shadow: 0 10px 36px rgba(0,0,0,.15);
 }
 .login_container a {
@@ -168,8 +179,8 @@ body{
   font-size: 1.15rem;
   font-weight: 600;
   box-shadow: 0 1px 3px rgba(0,0,0,.15);
-  /* background: var(--ihiColorOpacity); */
-  background: linear-gradient(0deg, var(--ihiColor) 2%, var(--ihiColorOpacity) 90%);
+  background: var(--ihiColorOpacity);
+  /* background: linear-gradient(0deg, var(--ihiColor) 2%, var(--ihiColorOpacity) 90%); */
   border-radius: 5px;
 }
 .register_form_content {
@@ -231,15 +242,17 @@ body{
 }
 
 .registration_container form button {
-  background: linear-gradient(0deg, var(--ihiColor) 2%, var(--ihiColorOpacity) 90%);
-  transition: ease 5s;
+  background: var(--ihiColorOpacity);
+  /* background: linear-gradient(0deg, var(--ihiColor) 2%, var(--ihiColorOpacity) 90%); */
+  transition: ease 0.3s;
   font-size: 1.15rem;
   padding: 0.5rem 3rem;
   font-weight: 500;
 }
 .registration_container form button:hover {
-  background: linear-gradient(0deg, var(--ihiColorOpacity) 2%, var(--ihiColor) 90%);
-  box-shadow: 0 10px 36px rgba(0,0,0,.15);
+  background: var(--ihiColor);
+  /* background: linear-gradient(0deg, var(--ihiColorOpacity) 2%, var(--ihiColor) 90%); */
+  box-shadow: 0 5px 16px rgba(0,0,0,.15);
 }
 .registration_container a {
   color: blue;

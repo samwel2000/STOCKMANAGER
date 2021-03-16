@@ -6,6 +6,8 @@ from django.contrib import messages
 from django.utils import timezone
 from .forms import *
 from django.utils import translation
+from django.template.loader import render_to_string
+from django.core.mail import EmailMessage
 
 # Create your views here.
 @login_required
@@ -30,10 +32,27 @@ def home(request):
                 data['used_quantity'] = get_item_proved_request_quantity_sum['approved_quantity']
                 data['available_quantity'] = available_quantity
                 items_data.append(data)
+
             else:
                 data['used_quantity'] = 0
-                data['available_quantity'] = item.quantity
+                available_quantity = item.quantity
+                data['available_quantity'] = available_quantity
                 items_data.append(data)
+
+            # < ---------- SENDMAIL IF AVAILABLE LESS THA 10 ---------->
+            if available_quantity <= 10:
+                html_template = 'stockapp/message.html'
+
+                html_message = render_to_string(html_template, { 'available_quantity': available_quantity, 'item':item})
+
+                subject = 'VCPTU STOCK MANAGER ALERT'
+                from_email = 'vcptustockmanager@gmail.com'
+                to_email = ['rphilipo@ihi.or.tz','egiteta@ihi.or.tz']
+
+                message = EmailMessage(subject, html_message, from_email, to_email)
+                message.content_subtype = 'html'
+                message.send()
+
 
     get_requests_made = Requests.objects.filter(requested_by = request.user).order_by('-requested_date')
     template_name = 'stockapp/home.html'

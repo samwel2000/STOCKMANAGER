@@ -2,8 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
 
 :root {
-  --ihiColor: #2ca02c;
-  --ihiColorOpacity: rgba(0,255,0,0.6);
+  --ihiColor: #00E676;
+  --ihiColorOpacity: #69F0AE;
 }
 *,::before,::after{
   margin: 0;
@@ -14,8 +14,8 @@ body{
   font-family: 'Montserrat', sans-serif;
 }
 nav {
-  background: linear-gradient(180deg,  var(--ihiColorOpacity) 0%, var(--ihiColor) 100%);
-  box-shadow: 0 1px 3px rgba(0,0,0,.5);
+  /* background: linear-gradient(180deg,  var(--ihiColorOpacity) 0%, var(--ihiColor) 100%); */
+  background: var(--ihiColorOpacity);
 }
 .brand {
   padding: 0;
@@ -34,7 +34,8 @@ nav {
   align-items: center;
 }
 .links > ul {
-  background: linear-gradient(0deg,  var(--ihiColorOpacity) 0%, var(--ihiColor) 100%);
+  /* background: linear-gradient(0deg,  var(--ihiColorOpacity) 0%, var(--ihiColor) 100%); */
+  background: var(--ihiColor);
   padding: 0;
   border-radius: 55px;
 }
@@ -72,7 +73,8 @@ nav {
     margin-top: 2rem;
   }
   .links > ul {
-    background: linear-gradient(0deg,  var(--ihiColorOpacity) 0%, var(--ihiColor) 100%);
+    /* background: linear-gradient(0deg,  var(--ihiColorOpacity) 0%, var(--ihiColor) 100%); */
+    background: var(--ihiColor);
     width: 100%;
     border-radius: 5px;
     padding: 0.5rem 1rem;
@@ -94,7 +96,8 @@ nav {
   opacity: 0.6;
 }
 .dropdown-links ul {
-  background: linear-gradient(0deg,  var(--ihiColorOpacity) 0%, var(--ihiColor) 100%);
+  /* background: linear-gradient(0deg,  var(--ihiColorOpacity) 0%, var(--ihiColor) 100%); */
+  background: var(--ihiColorOpacity);
 }
 .dropdown-links ul li {
   padding: 0.35rem 1rem;
@@ -190,14 +193,16 @@ nav {
   box-shadow: 0 0.55px 10px rgba(0,0,0,.15);
 }
 .outer_container thead {
-  background: linear-gradient(180deg,  var(--ihiColorOpacity) 0%, var(--ihiColor) 100%);
+  /* background: linear-gradient(180deg,  var(--ihiColorOpacity) 0%, var(--ihiColor) 100%); */
+  background: var(--ihiColorOpacity);
 }
 .outer_container .table-empty {
   text-align: center;
   color: var(--ihiColor);
 }
 .outer_container .collapsing_btn {
-  background: linear-gradient(180deg,  var(--ihiColorOpacity) 0%, var(--ihiColor) 100%);
+  /* background: linear-gradient(180deg,  var(--ihiColorOpacity) 0%, var(--ihiColor) 100%); */
+  background: var(--ihiColorOpacity);
   width: 100%;
   text-align: center;
   outline:none;
@@ -205,7 +210,8 @@ nav {
   color: #282c35;
 }
 .outer_container .collapsing_btn:hover {
-  background: linear-gradient(0deg,  var(--ihiColorOpacity) 0%, var(--ihiColor) 100%);
+  /* background: linear-gradient(0deg,  var(--ihiColorOpacity) 0%, var(--ihiColor) 100%); */
+  background: var(--ihiColorOpacity);
 }
 .outer_container .request-form {
   padding: 2rem;
@@ -235,7 +241,8 @@ nav {
   margin-left: 1rem;
 }
 .outer_container .statistics img {
-  background: linear-gradient(180deg,  var(--ihiColorOpacity) 0%, var(--ihiColor) 100%);
+  /* background: linear-gradient(180deg,  var(--ihiColorOpacity) 0%, var(--ihiColor) 100%); */
+  background: var(--ihiColorOpacity);
   width: 3.5rem;
   border: 1px solid #1a1110;
 }

@@ -4,7 +4,7 @@
 {% url 'dashboard:requestItem' as dashboard_item %}
 {% url 'dashboard:systemUsers' as dashboard_user %}
 
-<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+<nav class="navbar fixed-top navbar-expand-lg navbar-light w3-card">
   <div class="container pb-2 pt-1">
     <a class="navbar-brand w3-card brand" href="{% url 'dashboard:home' %}">STOCK MANAGER</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,7 +32,7 @@
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
            {{user.first_name|title}} {{user.last_name|title}} <img src="{% static 'images/login.png' %}" alt="User avatar">
         </a>
-        <ul class="dropdown-menu bg-light" aria-labelledby="navbarDropdown">
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
           <li><a class="dropdown-item" href="{% url 'dashboard:profile' %}"><i class="fas fa-user"></i> Profile</a></li>
           <hr class="dropdown-divider">
           <li><a class="dropdown-item" href="{% url 'accounts:password_change' %}"><i class="fas fa-key"></i> Change password</a></li>
