@@ -5,10 +5,12 @@ from django.db.models import Sum
 from django.contrib import messages
 from django.utils import timezone
 from .forms import *
+from django.utils import translation
 
 # Create your views here.
 @login_required
 def home(request):
+    translation.activate(request.user.profile.language)
     get_total_items_type = Product.objects.all().count()
     get_total_system_users = User.objects.all().count()
     get_total_requests = Requests.objects.all().count()
@@ -22,7 +24,7 @@ def home(request):
         for item in Product.objects.all():
             data = {}
             data['item'] = item
-            get_item_proved_request_quantity_sum = Requests.objects.filter(item_name=item, request_status=True).aggregate(approved_quantity = Sum('quantity'))
+            get_item_proved_request_quantity_sum = Requests.objects.filter(item_name=item, request_status=True, returned_date__isnull=True).aggregate(approved_quantity = Sum('quantity'))
             if get_item_proved_request_quantity_sum['approved_quantity']:
                 available_quantity = item.quantity - int(get_item_proved_request_quantity_sum['approved_quantity'])
                 data['used_quantity'] = get_item_proved_request_quantity_sum['approved_quantity']
@@ -39,14 +41,15 @@ def home(request):
         'total_system_users':get_total_system_users,
         'total_requests':get_total_requests,
         'total_approved_request':get_total_approved_request,
-        'user_total__requests':get_user_total_requests,
-        'user_total__approved_request':get_user_total_approved_request,
+        'user_total_requests':get_user_total_requests,
+        'user_total_approved_request':get_user_total_approved_request,
         'items_data':items_data,
     }
     return render(request, template_name, context)
 
 @login_required
 def profile(request):
+    translation.activate(request.user.profile.language)
     get_user = get_object_or_404(User, username = request.user)
     template_name = 'stockapp/profile.html'
     context = {
@@ -56,6 +59,7 @@ def profile(request):
 
 @login_required
 def systemUsers(request):
+    translation.activate(request.user.profile.language)
     if request.method == 'POST':
         form = ProfileForm(request.POST or None)
         if form.is_valid():
@@ -73,6 +77,7 @@ def systemUsers(request):
 
 @login_required
 def manageProducts(request):
+    translation.activate(request.user.profile.language)
     if request.method == 'POST' and 'new_button' in request.POST:
         form = ProductForm(request.POST or None)
         if form.is_valid():
@@ -111,6 +116,7 @@ def manageProducts(request):
 
 @login_required
 def requestItem(request):
+    translation.activate(request.user.profile.language)
     if request.method == 'POST':
         form = RequestForm(request.POST or None)
         if form.is_valid():
@@ -131,6 +137,7 @@ def requestItem(request):
 
 @login_required
 def stockRequests(request):
+    translation.activate(request.user.profile.language)
     get_requests_made = Requests.objects.filter().order_by('-requested_date')
     template_name = 'stockapp/stockRequests.html'
     context = {
@@ -140,14 +147,21 @@ def stockRequests(request):
 
 @login_required
 def stockRequestsApprove(request, pk):
+    translation.activate(request.user.profile.language)
     get_request = get_object_or_404(Requests, pk=pk)
     Requests.objects.filter(pk=pk).update(
         request_status = True,
         approved_date = timezone.now()
     )
-    get_requests_made = Requests.objects.filter()
-    template_name = 'stockapp/stockRequests.html'
-    context = {
-        'requests_made':get_requests_made,
-    }
-    return render(request, template_name, context)
+    messages.warning(request, 'Request approved succesifully')
+    return redirect('dashboard:stockRequests')
+
+@login_required
+def stockReturn(request, pk):
+    translation.activate(request.user.profile.language)
+    get_request = get_object_or_404(Requests, pk=pk)
+    Requests.objects.filter(pk=pk).update(
+        returned_date = timezone.now()
+    )
+    messages.warning(request, 'Items marked as returned succesifully')
+    return redirect('dashboard:stockRequests')

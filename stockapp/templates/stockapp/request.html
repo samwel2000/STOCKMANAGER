@@ -1,5 +1,6 @@
 {% extends './base.html' %}
-{% block title %}Manage Items{% endblock%}
+{% load i18n %}
+{% block title %}Stock requests{% endblock%}
 {% block contents %}
 <div class="outer_container">
   <div class="container">
@@ -37,11 +38,15 @@
               <thead>
                 <tr>
                   <th>S/No</th>
-                  <th>item name</th>
-                  <th>quantity</th>
-                  <th>date requested</th>
-                  <th>request status</th>
-                  <th>date approved</th>
+                  <th>Item name</th>
+                  <th>Quantity</th>
+                  <th>Returnable</th>
+                  <th>Destination</th>
+                  <th>Project name</th>
+                  <th>Date requested</th>
+                  <th>Request status</th>
+                  <th>Date approved</th>
+                  <th>Date returned</th>
                 </tr>
               </thead>
               <tbody>
@@ -50,9 +55,13 @@
                   <td>{{ forloop.counter }}</td>
                   <td>{{ request_made.item_name }}</td>
                   <td>{{ request_made.quantity }}</td>
+                  <td>{% if request_made.returnable %}Yes{% else %}No{% endif %}</td>
+                  <td>{{ request_made.destination }}</td>
+                  <td>{{ request_made.project_name|upper }}</td>
                   <td>{{ request_made.requested_date }}</td>
                   <td>{% if request_made.request_status %}<p class="alert alert-success p-0 text-center">Approved</p>{% else %}<p class="alert alert-warning p-0 text-center">Pending</p>{% endif %}</td>
                   <td>{% if request_made.approved_date %}{{ request_made.approved_date }}{% else %}-{% endif %}</td>
+                  <td>{% if request_made.returned_date %}{{ request_made.returned_date }}{% else %}-{% endif %}</td>
                 </tr>
                 {% empty %}
                 <tr>

@@ -140,10 +140,20 @@ nav {
   border: 1px solid #aaa;
   background: #fafafa;
 }
+.outer_container form input[type=checkbox] {
+  margin-top: -1.65rem;
+  margin-left: -6rem;
+}
+@media screen and (max-width:768px) {
+  .outer_container form input[type=checkbox] {
+    margin-top: -1.65rem;
+    margin-left: -2rem;
+  }
+}
 .outer_container form select {
   display: block;
   width: 100%;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem;
   outline: none;
   margin-bottom: 0.5rem;
   border: 1px solid #aaa;

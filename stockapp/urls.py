@@ -11,4 +11,5 @@ urlpatterns = [
     path('request-item/', views.requestItem, name='requestItem'),
     path('requests/', views.stockRequests, name='stockRequests'),
     path('requests/<int:pk>/approve/', views.stockRequestsApprove, name='stockRequestsApprove'),
+    path('requests/<int:pk>/return/', views.stockReturn, name='stockReturn'),
 ]

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .forms import *
+from .models import Profile
+from .forms import RegistrationForm
 
 
 # Create your views here.
@@ -14,7 +15,6 @@ def register(request):
                 user = user
             )
             profileObject.save()
-            username = form.cleaned_data.get('username')
             messages.success(request, f'Your account has been created! Your now able to login')
             return redirect('accounts:login')
 

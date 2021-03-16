@@ -21,4 +21,10 @@ class ExistingProductForm(forms.ModelForm):
 class RequestForm(forms.ModelForm):
     class Meta:
         model = Requests
-        fields = ['item_name','quantity']
+        exclude = [
+                'requested_by',
+                'request_status',
+                'approved_date',
+                'returned_date',
+                'requested_date'
+                ]
